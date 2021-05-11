@@ -1,0 +1,251 @@
+.white, .datepicker input, .datepicker svg{
+    color:white;
+    stroke:#fff;
+}
+.hidden{
+    display:none;
+}
+.bgtransparent{
+    background-color: transparent;
+}
+.borderwhite{
+    border:1px solid white;
+    border-radius: 0%;
+    
+}
+.bordergrey{
+    border:1px solid rgb(177, 177, 177);
+    border-radius: 0%;
+    
+}
+.boxshadowwhite{
+    box-shadow: 12px 12px white;
+}
+.borderNASABLUE{
+    border:1px solid #0B3D91;
+}
+.borderNASARED{
+    border:1px solid #FC3D21;
+}
+
+.notosans{
+    font-family: notosans;
+}
+.ibmmono{
+    font-family: ibmmono;
+}
+.babas{
+    font-family: bebas;
+}
+.mono {
+    font-family: monospace;
+}
+.mxwidth80{
+    max-width:80%;
+    height:auto;
+    text-align: center;
+}
+
+.button{
+    font-family: roboto;
+    letter-spacing: 0.2rem;
+    color:white;
+    border:0.5px solid white;
+    padding:0.5rem;
+    background-color: rgba(255,255,255,0.1);
+}
+.button:hover{
+    color:Black;
+    text-decoration: none;
+    background-color: white;
+}
+.datepicker{
+
+    border:1px solid white;
+    box-shadow: 5px 5px white;
+}
+.datepicker abbr{
+    color:black;
+}
+.calender{
+    font-family:roboto;
+}
+.calender .react-calendar__month-view__weekdays__weekday{
+    color:black;
+}
+.marginlg{
+    margin-top:3rem;
+    margin-bottom:3rem;
+}
+.marginb1rem{
+    margin-bottom:1rem;
+}
+.padding1{
+    padding:1rem;
+}
+
+.nomargins{
+    margin:0;
+}
+
+.marginTop5rem{
+    margin-top: 5rem;
+}
+
+.fixed {
+    position: fixed;
+}
+.scrollit {
+    float: left;
+}
+
+
+.zindex100{
+    z-index: 100;
+}
+.fixedmd{
+    
+    position:fixed;
+    max-width: 30%;
+  
+}
+.height10vh{
+    height:10vh;
+}
+
+@media (max-width: 768px) { 
+    .mxwidth80{
+        max-width:100%;
+    }
+  }
+
+@media (max-width:991px){
+    .fixedmd{
+        
+        position:relative;
+        max-width:100%;
+    }
+}
+
+@media (min-width: 1400px){
+    .fixedmd{
+    
+        margin-left:7rem;
+        margin-right:auto;
+        max-width:20%;
+    }
+}
+
+@media(max-height:900px) and (min-width:991px){
+    .detail{
+        display:none;
+    }
+}
+
+
+/* Loading Animations */
+.ldsgrid {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .ldsgrid div {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    animation: lds-grid 1.2s linear infinite;
+  }
+  .ldsgrid div:nth-child(1) {
+    top: 8px;
+    left: 8px;
+    animation-delay: 0s;
+  }
+  .ldsgrid div:nth-child(2) {
+    top: 8px;
+    left: 32px;
+    animation-delay: -0.4s;
+  }
+  .ldsgrid div:nth-child(3) {
+    top: 8px;
+    left: 56px;
+    animation-delay: -0.8s;
+  }
+  .ldsgrid div:nth-child(4) {
+    top: 32px;
+    left: 8px;
+    animation-delay: -0.4s;
+  }
+  .ldsgrid div:nth-child(5) {
+    top: 32px;
+    left: 32px;
+    animation-delay: -0.8s;
+  }
+  .ldsgrid div:nth-child(6) {
+    top: 32px;
+    left: 56px;
+    animation-delay: -1.2s;
+  }
+  .ldsgrid div:nth-child(7) {
+    top: 56px;
+    left: 8px;
+    animation-delay: -0.8s;
+  }
+  .ldsgrid div:nth-child(8) {
+    top: 56px;
+    left: 32px;
+    animation-delay: -1.2s;
+  }
+  .ldsgrid div:nth-child(9) {
+    top: 56px;
+    left: 56px;
+    animation-delay: -1.6s;
+  }
+  @keyframes lds-grid {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  .lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #fff;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+  }
+  .lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+  }
+  .lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+  }
+  @keyframes lds-facebook {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
+  }
+  

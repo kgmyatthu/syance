@@ -1,0 +1,83 @@
+.kronaone {
+    font-family: kronaone;
+}
+
+.roboto{
+    font-family: roboto;
+
+}
+.bebas{
+    font-family:bebas;
+}
+.notosans{
+    font-family: notosans;
+}
+.fatface{
+    font-family:fatface;
+}
+
+.customNav{
+    background-color: black;
+}
+
+.customdd > div{
+    /* background-color: transparent;
+    backdrop-filter: blur(0.3rem); */
+    background-color:black;
+    
+}
+.customdd > div > a{
+    color: white;
+    background-color: transparent;
+}
+
+.spacingL{
+    letter-spacing: 1rem;
+}
+.spacingM{
+    letter-spacing: 0.5rem;
+}
+.spacingS{
+    letter-spacing: 0.2rem;
+}
+.nospacing{
+    letter-spacing: normal;
+}
+
+.links, .links > a, .links > a:hover, .links > div > a, .links > div > a:hover{
+    color:white;
+    background-color: transparent;
+}
+.customNavToggle > span{
+    
+    background-image: url(../../assets/svg/menu.svg);
+}
+.customNavToggle > span::after{
+    
+    background-image: url(../../assets/svg/letter-x.svg);
+}
+
+.txtshadow{
+    text-shadow: 3px 3px #0B3D91, 3px 3px #FC3D21;
+}
+.center{
+    top:50%;
+    left:50%;
+}
+.logo{
+    display:inline;
+    stroke:white;
+    color:white;
+}
+@media (max-width: 768px) { 
+    .logo{
+        display: None;
+    }
+
+  }
+
+@media(max-width:990px){
+    .customNav{
+        border-bottom:1px solid white;
+    }
+}
