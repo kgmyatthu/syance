@@ -34,7 +34,7 @@ export default function Navigation() {
                             </Col>
                             <Col md="10" sm="12">
                                 <h1 className={[styles.links,styles.spacingM,styles.txtshadow].join(" ")}>
-                                    <span className={styles.bebas}>&nbsp;S&nbsp;I&nbsp;A&nbsp;N&nbsp;S&nbsp;E</span>
+                                    <span className={styles.bebas}>&nbsp;S&nbsp;Y&nbsp;A&nbsp;N&nbsp;C&nbsp;E</span>
                                 </h1>
                             </Col>
                         </Row>
