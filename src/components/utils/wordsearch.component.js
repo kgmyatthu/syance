@@ -25,8 +25,10 @@ const WordSearch = ({title, callback}) => {
                     </Col>
                     <Col className="col-1" style={{color:"white"}}>
                             <span className={styles.clearer} onClick={()=>{
-                                ibox.current.value = null;
-                                callback(ibox.current);
+                                if(ibox.current.value){
+                                    ibox.current.value = null;
+                                    callback(ibox.current);
+                                }
                             }}>
                                 <ImCross/>
                             </span>
