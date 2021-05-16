@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react'
-import styles from '../assets/css/sentry.module.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router';
-import Navigation from '../components/nav/nav.component';
+import styles from '../assets/css/sentry.module.css';
 import Footer from '../components/footer/footer.component';
+import Navigation from '../components/nav/nav.component';
 import { OrbitalElementTable, SentrySpecificTable, SentrySummeryTable } from '../components/table/table.component';
-import axios from 'axios';
 
 const SentryDetail = () => {
     let {obj_des} = useParams();
