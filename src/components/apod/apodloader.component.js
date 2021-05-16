@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../assets/css/util.module.css';
 import { Jumbotron, Row, Col, Container } from 'react-bootstrap';
-import OnLoadGrid from '../utils/onloadgrid.component';
+import OnLoadGrid from '../loader/onloadgrid.component';
 
 const APOD_BUFFER = () =>{
     return (

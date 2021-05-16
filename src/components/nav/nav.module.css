@@ -17,7 +17,8 @@
 }
 
 .customNav{
-    background-color: black;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(0.5rem);
 }
 
 .customdd > div{
@@ -80,4 +81,17 @@
     .customNav{
         border-bottom:1px solid white;
     }
+}
+
+.borderANDshadow{
+    background-color:transparent;
+    color:white;
+    border:1px solid white;
+    box-shadow: 8px 8px white;
+}
+.borderANDshadow * {
+    color:white;
+}
+.borderANDshadow *:hover{
+    color:black;
 }

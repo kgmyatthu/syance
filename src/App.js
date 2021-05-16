@@ -4,8 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './components/Home';
 import Apod from './components/Apod';
-import Test from './components/Test';
+import Sentry from './components/Sentry';
 import { URLS } from './components/settings';
+import {Test} from './components/Test';
 
 
 
@@ -21,7 +22,10 @@ function App() {
         <Route path={URLS.APOD_ROOT}>
           <Apod />
         </Route>
-        <Route path='/test'>
+        <Route exact path={URLS.SENTRY()}>
+          <Sentry />
+        </Route>
+        <Route exact path={URLS.SENTRY(":obj_des")}>
           <Test />
         </Route>
         <Route path='*'>

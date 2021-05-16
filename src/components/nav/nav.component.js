@@ -45,9 +45,12 @@ export default function Navigation() {
                         </Nav>
                         <Nav className={[styles.roboto,styles.links,styles.spacingS].join(" ")}>
                             <NavDropdown  className={styles.customdd} title="&nbsp;01.Explore" id="collasible-nav-dropdown">
+                              
                                 <NavDropdown.Item href={URLS.APOD_ROOT}><span className={styles.nospacing}>Astronomy Picture of the Day</span></NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2"><span className={styles.nospacing}>Asteroids - NeoWs</span></NavDropdown.Item>
+                                <NavDropdown.Item href={URLS.SENTRY()}><span className={styles.nospacing}>NASA Sentry</span></NavDropdown.Item>
+                                <NavDropdown.Item href={URLS.SENTRY()}><span className={styles.nospacing}>Near Earth Asteriods (NEOs)</span></NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3"><span className={styles.nospacing}>Mars Weather</span></NavDropdown.Item>
+                              
                             </NavDropdown>
                             <Nav.Link href="">&nbsp;02.About</Nav.Link>
                             <NavDropdown  className={styles.customdd} title="&nbsp;03.Share" id="collasible-nav-dropdown">

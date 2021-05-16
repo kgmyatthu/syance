@@ -8,6 +8,7 @@ import {API_KEY} from './settings';
 import { DateRangeSearch } from './utils/datesearch.component';
 import APOD_BUFFER from './apod/apodloader.component';
 import Footer from './footer/footer.component';
+import FullscreenLoader from './loader/fullscreenloader.component';
 
 
 
@@ -35,8 +36,10 @@ const Apod = () => {
     },[]);
 
     useEffect(()=>{
-        if (startDate > endDate){
-            setStartDate(new Date(2020));
+        if (endDate && startDate){
+            if (startDate.getTime() > endDate.getTime()){
+                setStartDate(null);
+            }
         }
     },[startDate,endDate]);
 
@@ -47,7 +50,7 @@ const Apod = () => {
 
         axios.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&start_date=${sDate}&end_date=${eDate}`)
         .then(res => {
-            setApods(res.data);
+            setApods([...res.data]);
             console.log("data's been set")
         })
         .catch(err => {
@@ -73,6 +76,13 @@ const Apod = () => {
         });
     }
 
+    if(isLoading){
+        return(
+            <>
+                <FullscreenLoader/>
+            </>
+        )
+    }
     return (
         <>
         <Navigation/>

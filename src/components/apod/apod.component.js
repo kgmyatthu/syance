@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styles from '../../assets/css/util.module.css';
 import { Image, Jumbotron, Row, Col } from 'react-bootstrap';
-import OnLoadGrid from '../utils/onloadgrid.component';
+import OnLoadGrid from '../loader/onloadgrid.component';
 
 
 
@@ -35,7 +35,7 @@ const APOD = ({id, data, children}) => {
                                     : <></>
                                 }
 
-                                { data.media_type == 'video'?
+                                { data.media_type === 'video'?
                                     <iframe ref={media} className={styles.hidden} style={{width:"100%", height:"50vh"}} onLoad={mediaLoaded} src={data.url} title="video player" frameBorder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                                     :
                                     <Image ref={media} className={[styles.bordergrey,styles.mxwidth80,styles.hidden]} onLoad={mediaLoaded} src={data.url} alt={data.title}fluid />

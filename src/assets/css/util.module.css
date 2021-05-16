@@ -249,3 +249,28 @@
     }
   }
   
+  .wordsearch{
+    display:inline-block;
+    border-bottom: 2px solid white;
+    padding:0;
+    
+    
+  }
+  .ws1stcol{
+    background-color: white;
+    color:black;
+    font-family: ibmmono;
+    border:1px solid white;
+  }
+  .input{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: transparent;
+    border:none;
+    color:white;
+    padding:0;
+    outline:none
+  }
+  .clearer:hover{
+    color:rgb(81, 6, 255);
+  }
+
