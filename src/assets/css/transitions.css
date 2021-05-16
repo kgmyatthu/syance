@@ -1,0 +1,20 @@
+.defaulttransition-enter{
+    opacity:0;
+  }
+  .defaulttransition-enter-active{
+    opacity:.5;
+    transition:opacity 300ms;
+  }
+  .defaulttransition-enter-done{
+    opacity:1;
+  }
+  .defaulttransition-exit{
+    opacity:1;
+  }
+  .defaulttransition-exit-active{
+    opacity:0.5;
+    transition: opacity 300ms;
+  }
+  .defaulttransition-exit-done{
+    opacity:0;
+  }

@@ -1,0 +1,39 @@
+.label{
+    font-family: ibmmono;
+}
+.tooltip{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: none;
+    padding:0.3rem;
+    margin-left:0.3rem;
+    background-color: black;
+    color:white;
+    border:1px solid white;
+    box-shadow: 5px 5px white;
+    z-index:9000;
+    position:absolute;
+    transform: translateX(20%);
+    transform: translateY(-50%); 
+}
+
+.label:hover .tooltip{
+    opacity:90%;
+    background-color: black;
+    display: inline;
+    animation:fadein 0.3s;
+    font-weight: normal;
+}
+.label:hover{
+    cursor:help;
+ 
+    text-decoration: none;
+    
+}
+
+
+
+@keyframes fadein{
+    from {opacity: 0%;}
+    to{opacity: 90%;}
+}

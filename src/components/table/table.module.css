@@ -1,0 +1,54 @@
+.sentrytable{
+    overflow-x: hidden;
+    
+    padding:1rem;
+    font-size:0.8rem;
+    border-collapse: collapse;
+    color:white;
+    font-family: ibmmono;
+    width:100%;
+    text-align:center;
+}
+.bgblack {
+    color:black;
+    background-color: white;
+}
+
+.sentrytable, .sentrytable > th, .sentrytable > td {
+    border: 2px solid white;
+  }
+
+.borderbottom{
+    border-bottom:2px solid white;
+}
+.sentrytable td{
+    padding:0.4rem;
+}
+.hoverboldunderline{
+    text-decoration: underline;
+}
+.hoverboldunderline:hover{
+    font-weight: bolder;
+}
+.sortbutton{
+    color:inherit;
+}
+.sortbutton:hover{
+    color:rgb(81, 6, 255);
+}
+
+@media (max-width:800px){
+    .hidesm{
+        display:none;
+    }
+    
+}
+
+.ibmmonowhite{
+    text-align: left;
+    color:white;
+    font-family: ibmmono;
+}
+.alignjustice{
+    text-align: justify;
+}
