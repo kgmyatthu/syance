@@ -25,9 +25,11 @@
     padding:0.4rem;
 }
 .hoverboldunderline{
+    color:white;
     text-decoration: underline;
 }
 .hoverboldunderline:hover{
+    color:rgb(81, 6, 255);
     font-weight: bolder;
 }
 .sortbutton{

@@ -1,13 +1,14 @@
 
-import React, { useEffect, useState }from 'react';
-
-import Tooltip from '../utils/tooltip.component';
-import styles from './table.module.css';
 import axios from 'axios';
-import {AiFillCaretUp, AiFillCaretDown} from 'react-icons/ai';
-import WordSearch from '../utils/wordsearch.component';
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import OnLoadGrid from '../loader/onloadgrid.component';
-import { Container, Row, Col} from 'react-bootstrap';
+import { URLS } from '../settings';
+import Tooltip from '../utils/tooltip.component';
+import WordSearch from '../utils/wordsearch.component';
+import styles from './table.module.css';
+
 
 
 function compareValues(key, order = 'asc') {
@@ -35,7 +36,7 @@ function compareValues(key, order = 'asc') {
 
     
 
-export const SentrySummeryTable = () => {
+export const SentrySummeryTable = ({filter, nohead}) => {
     let [sentries, setSentries] = useState({data:[]});
     let [tabledata, setTabledata] = useState([...sentries.data]);
     let [errs, setErrs] = useState();
@@ -47,12 +48,18 @@ export const SentrySummeryTable = () => {
 
     useEffect(()=>{
         try{
-            setTabledata([...sentries.data]);
+            if(filter){
+                setTabledata([...sentries.data.filter(data=>data.des === filter)]);
+            }
+            else{
+                setTabledata([...sentries.data]);
+            }
         }
         catch{
             setTabledata([]);
         }
     },[sentries])
+
 
     const fetchSentryFromNasa = () =>{
         setIsLoading(true);
@@ -75,7 +82,7 @@ export const SentrySummeryTable = () => {
             <tr>
                 {/* Data prop must be sentries.data or table data */}
                 <td>
-                    <Tooltip tip={"click to see more about this object destination"}  ><span className={styles.hoverboldunderline}>{data.des}</span></Tooltip>
+                    <Tooltip tip={"click to see more about this object destination"}  ><a className={styles.hoverboldunderline} href={URLS.SENTRY(data.des)}>{data.des}</a></Tooltip>
                 </td>
                 <td>
                     <Tooltip tip={"year range"}  >{data.range}</Tooltip>
@@ -123,37 +130,41 @@ export const SentrySummeryTable = () => {
                                 </Container>
                                 :
                                 <>
-                                <Row style={{marginBottom:"1rem"}}>
-                                    <Col sm={12} md={6} className={styles.ibmmonowhite}>
-                                         <small>Total_Entries: {sentries.count}</small> <br/>
-                                        <small>Source: {sentries.signature.source}</small>  <br/>
-                                         <small>Version: {sentries.signature.version}</small>  <br/>
-                                    </Col>
-                                    <Col sm={12} md={6} className={styles.alignjustice}>
-                                        <WordSearch 
-                                        title="Destination/ID"
-                                        callback={
-                                            (e)=>{
-                                                //Using setTimeout to improve performance when interating over thousands of entries
-                                                if (e.value){
-                                                    setTimeout(()=>{
-                                                        setTabledata(sentries.data.filter(function(obj) {
-                                                            return (obj.des.includes(e.value.toUpperCase()) || obj.id.includes(e.value) );
-                                                        }))
-                                                    },1500);
+                                { !nohead ? 
+                                        <Row style={{marginBottom:"1rem"}}>
+                                        <Col sm={12} md={6} className={styles.ibmmonowhite}>
+                                                <small>Total_Entries: {sentries.count}</small> <br/>
+                                            <small>Source: {sentries.signature.source}</small>  <br/>
+                                                <small>Version: {sentries.signature.version}</small>  <br/>
+                                        </Col>
+                                        <Col sm={12} md={6} className={styles.alignjustice}>
+                                            <WordSearch 
+                                                        title="Destination/ID"
+                                                        callback={
+                                                            (e)=>{
+                                                                //Using setTimeout to improve performance when interating over thousands of entries
+                                                                
+                                                                if (e.value){
+                                                                    setTimeout(()=>{
+                                                                        setTabledata(sentries.data.filter(function(obj) {
+                                                                            return (obj.des.includes(e.value.toUpperCase()) || obj.id.includes(e.value) );
+                                                                        }))
+                                                                    },1500);
 
-                                                }
-                                                else{
-                                                    setTimeout(()=>{
-                                                        setTabledata([...sentries.data]);
-                                                    },500);
-                                                }
-                                            }
-                                        }
-                                        /><br/>
-                                        <small className={[styles.ibmmonowhite,"text-muted"].join(" ")}>Found {tabledata.length} entries</small>
-                                    </Col>
-                                </Row>
+                                                                }
+                                                                else{
+                                                                    setTimeout(()=>{
+                                                                        setTabledata([...sentries.data]);
+                                                                    },500);
+                                                                }
+                                                            }
+                                                        }/><br/>
+                                            <small className={[styles.ibmmonowhite,"text-muted"].join(" ")}>Found {tabledata.length} entries</small>
+                                        </Col>
+                                    </Row>
+                                    :
+                                    <></>
+                                }
                                 <table className={styles.sentrytable}>
                                     <thead>
                                     <tr className={[styles.borderbottom,styles.bgblack].join(" ")}>
@@ -285,5 +296,280 @@ export const SentrySummeryTable = () => {
                     }
             </div>
         </>
+    )
+}
+
+
+
+
+
+export const SentrySpecificTable = ({obj_des}) => {
+    let [isLoading, setIsLoading] = useState(true);
+    let [sentry, setSentry] = useState({});
+    let [tabledata, setTabledata] = useState([]);
+
+    useEffect(()=>{
+        setIsLoading(true);
+        axios.get(`https://ssd-api.jpl.nasa.gov/sentry.api?des=${obj_des}`)
+            .then(res => setSentry({...res.data}))
+            .catch(err => console.log(err))
+            .finally(setIsLoading(false))
+    },[])
+
+    useEffect(()=>{
+        try{
+            setTabledata([...sentry.data]);
+        }
+        catch{
+            setTabledata([]);
+        }
+    },[sentry])
+
+    if(isLoading){
+        return (
+            <Container style={{textAlign:"center",color:"white",fontFamily:"ibmmono"}}>
+                <Col className="mx-auto" md={5}>
+                    <span style={{height:"30vh"}}></span>
+                    <OnLoadGrid/><br></br>
+                    Fetching Data From NASA ...
+                </Col>
+            </Container>
+        )
+    }
+
+    let TableRow = ({data}) =>{
+        return (<>
+            <tr>
+                <td>
+                    <Tooltip tip="date">
+                        {data.date}
+                    </Tooltip>
+                </td>
+                <td>
+                    <Tooltip tip="distance">
+                        {data.dist}
+                    </Tooltip>
+                </td>
+                <td className={styles.hidesm}>
+                    <Tooltip tip="width">
+                        {data.width}
+                    </Tooltip>
+                </td>
+                <td>
+                    <Tooltip tip="sigma impact">
+                        {data.sigma_imp}
+                    </Tooltip>
+                </td>
+                <td className={styles.hidesm}>
+                    <Tooltip tip="sigma lov">
+                        {data.sigma_lov}
+                    </Tooltip>
+                </td>
+                <td className={styles.hidesm}>
+                    <Tooltip tip="stretch lov">
+                        {data.stretch}
+                    </Tooltip>
+                </td>
+                <td>
+                    <Tooltip tip="impact probability">
+                        {data.ip}
+                    </Tooltip>
+                </td>
+                <td>
+                    <Tooltip tip="impact energy">
+                        {data.energy}
+                    </Tooltip>
+                </td>
+                <td className={styles.hidesm}>
+                    <Tooltip tip="palermo">
+                        {data.ps}
+                    </Tooltip>
+                </td>
+                <td className={styles.hidesm}>
+                    <Tooltip tip="torino">
+                        {data.ts}
+                    </Tooltip>
+                </td>
+            </tr>
+        </>)
+    }
+
+    return (
+
+        <Container fluid>
+            <table className={styles.sentrytable}>
+                <thead>
+                    <tr className={[styles.borderbottom,styles.bgblack].join(" ")}>
+                        <th>
+                            <Tooltip tip="calender date UTC of the potential impact">
+                                <span>Date<br/></span>
+                            </Tooltip>
+                        </th>
+                        <th>
+                            <Tooltip tip="Minimum distance on the target plane (scaled b-plane) from the LOV to the geocenter, measured in Earth radii. For these purposes the radius of the Earth, 6420 km, includes some allowance for the thickness of the atmosphere.">
+                                <span>Distance<br/>(r<small>Earth</small>)</span>
+                            </Tooltip>
+                        </th>
+                        <th className={styles.hidesm}>
+                            <Tooltip tip="One-sigma semi-width of the LOV uncertainty region, measured in Earth radii.">
+                                <span>Width<br/>(r<small>Earth</small>)</span>
+                            </Tooltip>
+                        </th>
+                        <th>
+                            <Tooltip tip="Lateral distance in sigmas from the LOV to the Earth's atmosphere. Zero indicates that the LOV intersects the Earth. It is computed from (Distance - 1)/Width.">
+                                <span>Sigma<br/>Impact</span>
+                            </Tooltip>
+                        </th>
+                        <th className={styles.hidesm}>
+                            <Tooltip tip="Coordinate along the Line Of Variations (LOV). This value is a measure of how well the impacting orbit fits the available observations. Zero indicates the best-fitting, central (nominal) orbit and the further from zero, the less likely the event: Roughly 99% of all the uncertainty region lies between -3 and +3. Sentry explores out to Sigma LOV = +/-5.">
+                                <span>Sigma<br/>LOV</span>
+                            </Tooltip>
+                        </th>
+                        <th className={styles.hidesm}>
+                            <Tooltip tip="Stretching is the semimajor axis of the local linear uncertainty region. It describes how fast one moves across the target plane as Sigma LOV changes, and is measured in Earth radii per sigma. The local probability density varies inversely with the stretching, and thus larger stretching values will generally lead to lower impact probabilities.">
+                                <span>Stretch<br/>LOV<br/>(r<small>Earth</small>)</span>
+                            </Tooltip>
+                        </th>
+                        <th>
+                            <Tooltip tip="Probability that the tabulated impact will occur. The probability computation is complex and depends on a number of assumptions that are difficult to verify. For these reasons the stated probability can easily be inaccurate by a factor of a few, and occasionally by a factor of ten or more.">
+                                <span>Impact<br/>Probability</span>
+                            </Tooltip>
+                        </th>
+                        <th>
+                            <Tooltip tip="Kinetic energy at impact, based upon the computed absolute magnitude and impact velocity for the particular case, and computed in accordance with the guidelines stated for the Palermo Technical Scale. Uncertainty in this value is dominated by mass uncertainty and the stated value will generally be good to within a factor of three.">
+                                <span>Impact<br/>Energy<br/>(Mt)</span>
+                            </Tooltip>
+                        </th>
+                        <th className={styles.hidesm}>
+                            <Tooltip tip="Hazard rating according to the Palermo technical impact hazard scale, based on the tabulated impact date, impact probability and impact energy.">
+                                <span>Palermo<br/>Scale</span>
+                            </Tooltip>
+                        </th>
+                        <th className={styles.hidesm}>
+                            <Tooltip tip="Hazard rating according to the Torino impact hazard scale, based on the tabulated impact probability and impact energy. The Torino scale is defined only for potential impacts less than 100 years in the future.">
+                                <span>Torino<br/>Scale</span>
+                            </Tooltip>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        tabledata.map(value=>{
+                            return (
+                                    <TableRow key={value.date} data={value}/>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+        </Container>
+    
+    )
+}
+
+
+
+export const OrbitalElementTable = ({sstr, saver}) => {
+    let [smallBody, setSmallBody] = useState({});
+    let [elements, setElements] = useState([]);
+    let [isLoading, setIsLoading] = useState();
+
+    useEffect(()=>{
+        setIsLoading(true);
+        axios.get(`https://ssd-api.jpl.nasa.gov/sbdb.api?sstr=${sstr}`)
+            .then(res => setSmallBody({...res.data}) )
+            .catch(err => console.log(err))
+            .finally(()=>{setIsLoading(false)})
+    },[])
+
+    useEffect(()=>{
+        try{
+            setElements([...smallBody.orbit.elements]);
+        }catch{
+            setElements([]);
+        }
+    },[smallBody])
+
+    useEffect(()=>{
+        if(saver){
+            saver({...smallBody});
+        }
+    },[elements])
+    
+    let TableRow = ({data}) =>{
+        return (
+            <tr>
+                <td>
+                    <Tooltip tip={data.title}>
+                        {data.label}
+                    </Tooltip>
+                </td>
+                <td>
+                    <Tooltip tip="">
+                        {data.value}
+                    </Tooltip>
+                </td>
+                <td>
+                    <Tooltip tip="">
+                        {data.sigma}
+                    </Tooltip>
+                </td>
+                <td>
+                    <Tooltip tip="">
+                        {data.units}
+                    </Tooltip>
+                </td>
+            </tr>
+        )
+    }
+
+    if(isLoading){
+        return (
+            <Container style={{textAlign:"center",color:"white",fontFamily:"ibmmono"}}>
+                <Col className="mx-auto" md={5}>
+                    <span style={{height:"30vh"}}></span>
+                    <OnLoadGrid/><br></br>
+                    Fetching Data From NASA ...
+                </Col>
+            </Container>
+        )
+    }
+    return (
+
+        <Container fluid>
+            <table className={styles.sentrytable}>
+                <thead>
+                    <tr className={[styles.borderbottom,styles.bgblack].join(" ")}>
+                        <th>
+                            <Tooltip tip="Orbital Elements">
+                                <span>Elements<br/></span>
+                            </Tooltip>
+                        </th>
+                        <th>
+                            <Tooltip tip="">
+                                <span>Values</span>
+                            </Tooltip>
+                        </th>
+                        <th>
+                            <Tooltip tip="">
+                                <span>Uncertainty(1-sigma)</span>
+                            </Tooltip>
+                        </th>
+                        <th>
+                            <Tooltip tip="">
+                                <span>Units</span>
+                            </Tooltip>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        elements.map(value=>{
+                            return <TableRow key={value.label} data={value}/>
+                        })
+                    }
+                </tbody>
+            </table>
+        </Container>
     )
 }
