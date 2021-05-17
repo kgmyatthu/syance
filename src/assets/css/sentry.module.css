@@ -6,12 +6,12 @@
 
 .orbitviewer{
     position: absolute;
-    top: 0;
+    top: 10%;
     left: 0;
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 100%;
+    height:95%;
 }
 @media(max-width:991px){
     .orbitviewer{
@@ -19,4 +19,14 @@
         height:70vh;
         position:relative;
     }
+}
+
+.sections{
+    font-family: ibmmono;
+    padding-bottom:1rem;
+    padding-top:1rem;
+    padding-left:0.2rem;
+    padding-right:0.2rem;
+    margin-bottom:5rem;
+    color:white;
 }
