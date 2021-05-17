@@ -4,9 +4,8 @@ import {Container, Row, Col} from 'react-bootstrap';
 import {ImCross} from 'react-icons/im';
 
 
-const WordSearch = ({title, callback}) => {
+export const Filter = ({title, callback}) => {
     let ibox = useRef();
-    let [isPurge, setIsPurge] = React.useState(false);
     return (
         <div className={styles.wordsearch}>
             <Container fluid>
@@ -40,4 +39,3 @@ const WordSearch = ({title, callback}) => {
     )
 }
 
-export default WordSearch;
