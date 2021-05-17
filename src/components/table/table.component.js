@@ -558,7 +558,7 @@ export const OrbitalElementTable = ({sstr, saver}) => {
                         </th>
                         <th>
                             <Tooltip tip="">
-                                <span>Uncertainty(1-sigma)</span>
+                                <span>Uncertainty (1-sigma)</span>
                             </Tooltip>
                         </th>
                         <th>
