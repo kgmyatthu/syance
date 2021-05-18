@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import styles from '../../assets/css/util.module.css';
 
-export const DateRangeSearch = ({startDate, setStartDate, endDate, setEndDate, onSearch, children}) => {
+export const DateRangeSearch = ({startDate, setStartDate, endDate, setEndDate, onSearch, to, children}) => {
     return (
         <>
             <Row className={[].join(" ")}>
@@ -36,7 +36,8 @@ export const DateRangeSearch = ({startDate, setStartDate, endDate, setEndDate, o
                             </Row>
                             <Row>
                                 <Col className={["text-center",styles.padding1].join(" ")}>
-                                    <button className={styles.button} onClick={onSearch}>Search</button><br/><br></br>
+                                    <a className={styles.button} href={to? to:""} onClick={to?"":onSearch}>Search</a>
+                                    <br/><br></br>
                                     {children}
                                 </Col>
                             </Row>

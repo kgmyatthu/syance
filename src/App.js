@@ -20,13 +20,16 @@ function App() {
         <Route exact path='/'>
           <Home />
         </Route>
-        <Route path={URLS.APOD_ROOT}>
+        <Route exact path={URLS.APOD()}>
+          <Apod />
+        </Route>
+        <Route exact path={URLS.APOD({start_date:":start_date", end_date:":end_date"})}>
           <Apod />
         </Route>
         <Route exact path={URLS.SENTRY()}>
           <Sentry />
         </Route>
-        <Route exact path={URLS.SENTRY(":obj_des")}>
+        <Route exact path={URLS.SENTRY({obj_des: ":obj_des"})}>
           <SentryDetail />
         </Route>
         <Route path='*'>

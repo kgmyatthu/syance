@@ -95,7 +95,7 @@ export const SentrySummeryTable = ({filter, nohead}) => {
             <tr>
                 {/* Data prop must be sentries.data or table data */}
                 <td>
-                    <Tooltip tip={"click to see more about this object destination"}  ><a className={styles.hoverboldunderline} href={URLS.SENTRY(data.des)}>{data.des}</a></Tooltip>
+                    <Tooltip tip={"click to see more about this object destination"}  ><a className={styles.hoverboldunderline} href={URLS.SENTRY({obj_des:data.des})}>{data.des}</a></Tooltip>
                 </td>
                 <td>
                     <Tooltip tip={"year range"}  >{data.range}</Tooltip>
