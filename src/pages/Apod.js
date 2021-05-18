@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Jumbotron, Row, Spinner } from 'react-bootstrap';
+import { useParams } from 'react-router';
 import styles from "../assets/css/util.module.css";
 import APOD from '../components/apod/apod.component';
 import APOD_BUFFER from '../components/apod/apodloader.component';
@@ -9,20 +10,33 @@ import FullscreenLoader from '../components/loader/fullscreenloader.component';
 import Navigation from '../components/nav/nav.component';
 import { API_KEY } from '../components/settings';
 import { DateRangeSearch } from '../components/utils/datesearch.component';
+import {URLS} from '../components/settings';
 
 
 
 
 const Apod = () => {
+    let {start_date, end_date} = useParams(); 
     let [apods, setApods] = useState([]);
-    let [startDate, setStartDate] = useState(new Date());
-    let [endDate, setEndDate] = useState(new Date());
+    let [startDate, setStartDate] = useState(start_date?new Date(`${start_date}`):new Date());
+    let [endDate, setEndDate] = useState(end_date?new Date(`${end_date}`):new Date());
     let [isLoading, setIsLoading] = useState(true);
     let [isLoadMore, setIsLoadMore] = useState(false);
 
     useEffect(()=>{
-
-        axios.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
+        if (start_date && end_date){
+            try{
+                setEndDate(new Date(`${end_date}`))
+                setStartDate(new Date(`${start_date}`));
+            }catch{
+                console.log("somthing break!")
+            }finally{
+                console.log(`${startDate}: ${endDate}`);
+                get_apod_within_date();
+            }
+        }
+        else{
+            axios.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
             .then(res => {
                 setApods([...apods,res.data]);
                 console.log(res.data);
@@ -32,6 +46,7 @@ const Apod = () => {
             .finally(()=>{
                 setIsLoading(false);
             });
+        }
         
     },[]);
 
@@ -47,11 +62,11 @@ const Apod = () => {
         setIsLoading(true);
         let sDate = startDate ? startDate.toISOString().slice(0, 10) : "";
         let eDate = endDate ? endDate.toISOString().slice(0, 10) : "";
-
+        
         axios.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&start_date=${sDate}&end_date=${eDate}`)
         .then(res => {
+            console.log([res.data])
             setApods([...res.data]);
-            console.log("data's been set")
         })
         .catch(err => {
             setApods([]);
@@ -106,7 +121,8 @@ const Apod = () => {
                                     setStartDate={setStartDate} 
                                     endDate={endDate} 
                                     setEndDate={setEndDate} 
-                                    onSearch={get_apod_within_date}>
+                                    onSearch={get_apod_within_date}
+                                    to={URLS.APOD({start_date:startDate.toISOString().slice(0, 10),end_date:endDate.toISOString().slice(0, 10)})}>
                                     <small className={[styles.white,styles.ibmmono,"text-muted"].join(" ")}>Find APODs between chosen period/date or you can randomly scroll through APODS that had been posted throughout the years.</small>
                                 </DateRangeSearch>
                             </Container>
