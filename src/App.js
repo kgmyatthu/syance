@@ -1,12 +1,12 @@
-import React from 'react';
-import {  BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Home from './pages/Home';
-import Apod from './pages/Apod';
-import Sentry from './pages/Sentry';
 import { URLS } from './components/settings';
-import {Test} from './pages/Test';
+import Apod from './pages/Apod';
+import Home from './pages/Home';
+import Sentry from './pages/Sentry';
+import NEO from './pages/Neo';
 import SentryDetail from './pages/SentryDetail';
 
 
@@ -31,6 +31,12 @@ function App() {
         </Route>
         <Route exact path={URLS.SENTRY({obj_des: ":obj_des"})}>
           <SentryDetail />
+        </Route>
+        <Route exact path={URLS.NEO()}>
+          <NEO />
+        </Route>
+        <Route exact path={URLS.NEO({sstr: ":sstr"})}>
+          <NEO />
         </Route>
         <Route path='*'>
           {/* <NotFound/> */}
