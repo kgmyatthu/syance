@@ -122,7 +122,10 @@ const Apod = () => {
                                     endDate={endDate} 
                                     setEndDate={setEndDate} 
                                     onSearch={get_apod_within_date}
-                                    to={URLS.APOD({start_date:startDate.toISOString().slice(0, 10),end_date:endDate.toISOString().slice(0, 10)})}>
+                                    to={URLS.APOD({
+                                                    start_date:startDate? startDate.toISOString().slice(0, 10) : null,
+                                                    end_date:endDate ? endDate.toISOString().slice(0, 10) : null
+                                                })}>
                                     <small className={[styles.white,styles.ibmmono,"text-muted"].join(" ")}>Find APODs between chosen period/date or you can randomly scroll through APODS that had been posted throughout the years.</small>
                                 </DateRangeSearch>
                             </Container>
