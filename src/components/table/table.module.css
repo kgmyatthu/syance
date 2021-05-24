@@ -1,3 +1,39 @@
+.orbitDP{
+    overflow-x: hidden;
+    font-size:0.8rem;
+    border-collapse: collapse;
+    color:white;
+    font-family: ibmmono;
+    border:2px solid white;
+    width:100%;
+    
+}
+.orbitDP > tr > td, .orbitDP > tr > th{
+   
+    padding-left:0.5rem;
+    padding-right:0.5rem;
+}
+.orbitDP, .orbitDP > th, .orbitDP > td {
+    border: 2px solid white;
+  }
+
+.orbitDP > tr{
+    text-align: center;
+    border-bottom: 2px solid grey;
+}
+.orbitDP > tr >  th{
+    background-color: white;
+    color:black;
+}
+
+
+
+
+
+
+
+
+
 .sentrytable{
     overflow-x: hidden;
     
@@ -9,7 +45,7 @@
     width:100%;
     text-align:center;
 }
-.bgblack {
+.bgwhite {
     color:black;
     background-color: white;
 }
@@ -53,4 +89,21 @@
 }
 .alignjustice{
     text-align: justify;
+}
+
+.button{
+    font-size:0.8rem;
+    font-family: roboto;
+    letter-spacing: 0.2rem;
+    color:white;
+    border:0.5px solid white;
+    padding:0.5rem;
+    background-color: rgba(255,255,255,0.1);
+    box-shadow: 4px 4px white;
+}
+.button:hover{
+    color:Black;
+    text-decoration: none;
+    background-color: white;
+    border:0.5px solid black;
 }

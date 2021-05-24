@@ -15,21 +15,22 @@
 .fatface{
     font-family:fatface;
 }
-
 .customNav{
     background-color: rgba(0,0,0,0.5);
     backdrop-filter: blur(0.5rem);
 }
-
 .customdd > div{
-    /* background-color: transparent;
-    backdrop-filter: blur(0.3rem); */
-    background-color:black;
-    
+    background-color: black;
 }
 .customdd > div > a{
     color: white;
     background-color: transparent;
+}
+
+@supports not (backdrop-filter:blur(0.4rem)) {
+    .customNav{
+        background-color: black;
+    }
 }
 
 .spacingL{
@@ -93,5 +94,11 @@
     color:white;
 }
 .borderANDshadow *:hover{
+    color:black;
+}
+.sharelink{
+    color:white
+}
+.sharelink:hover{
     color:black;
 }

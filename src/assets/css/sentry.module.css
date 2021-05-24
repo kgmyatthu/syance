@@ -5,6 +5,7 @@
 }
 
 .orbitviewer{
+    border:2px solid white;
     position: absolute;
     top: 10%;
     left: 0;
@@ -33,3 +34,5 @@
 .definations > p{
     margin-bottom: 3rem;
 }
+
+

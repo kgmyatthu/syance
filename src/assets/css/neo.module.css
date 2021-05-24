@@ -1,0 +1,65 @@
+.jumbo{
+    background-color: black;
+    color:white;
+
+    font-family:ibmmono;
+    padding:1rem;
+    border-radius: 0;
+}
+
+.preview{
+    
+    color:white;
+    font-family: ibmmono;
+}
+.fixedmd{
+    position:fixed;
+    
+    width:30%;
+    margin:auto;
+}
+@media(max-height:900px) and (min-width:991px){
+    .detail{
+        display:none;
+    }
+}
+@media (max-width:991px){
+    .fixedmd{
+        
+        position:relative;
+        width:100%;
+    }
+}
+@media (min-width: 2000px){
+    .fixedmd{
+        top:10%;
+        margin-left:7rem;
+        margin-right:auto;
+        max-width:20%;
+    }
+}
+.showsm{
+    display:none;
+}
+@media (max-width:800px){
+    .showsm{
+        display:block;
+    }
+    
+}
+.orbitviewer{
+    position: absolute;
+    border:2px solid white;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height:100%;
+}
+@media(max-width:991px){
+    .orbitviewer{
+        width:100%;
+        height:70vh;
+        position:relative;
+    }
+}
