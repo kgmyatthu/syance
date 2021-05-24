@@ -7,7 +7,7 @@ import Footer from '../components/footer/footer.component';
 import Navigation from '../components/nav/nav.component';
 import { OrbitViewer } from '../components/orbit/orbit.component';
 import { API_KEY, URLS } from '../components/settings';
-import { SentrySummeryTable } from '../components/table/table.component';
+
 
 const Home = () => {
 

@@ -4,7 +4,7 @@ import styles from "./nav.module.css";
 import "./nav.module.css";
 import {URLS} from '../settings';
 import {SiAtom} from 'react-icons/si';
-import { useLocation } from 'react-router';
+
 
 
 
@@ -20,9 +20,7 @@ export default function Navigation({nopad}) {
         setGap(navbar.current.clientHeight + 10);
     },[]);
   
-    const shareit = (url) =>{
-        window.open('https://www.facebook.com','width=600,height=400');
-    }
+
 
     return (
         <>
@@ -63,7 +61,7 @@ export default function Navigation({nopad}) {
                             <Nav.Link href={URLS.ABOUT()}>&nbsp;02.About</Nav.Link>
                             <NavDropdown  className={styles.customdd} title="&nbsp;03.Share" id="collasible-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1"><span className={styles.nospacing}><a className={styles.sharelink} href={fbshare} target="_blank" rel="noopener noreferrer">Facebook</a></span></NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2"><span className={styles.nospacing}><a className={styles.sharelink} whref={tshare} target="_blank" rel="noopener noreferrer">Twitter</a></span></NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2"><span className={styles.nospacing}><a className={styles.sharelink} href={tshare} target="_blank" rel="noopener noreferrer">Twitter</a></span></NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>

@@ -355,7 +355,7 @@ export const SentrySpecificTable = ({obj_des, callback}) => {
                 <td>
                     <Tooltip tip="date">
                         {callback?
-                                <a  className={styles.hoverboldunderline} onClick={(e)=>{
+                                <a  href="#"  className={styles.hoverboldunderline} onClick={(e)=>{
                                     callback(data.date);
                                 }}>{data.date}</a> 
                                 : 
