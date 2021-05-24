@@ -7,11 +7,12 @@ import Navigation from '../components/nav/nav.component';
 import {RiErrorWarningLine} from 'react-icons/ri';
 import Tooltip from '../components/utils/tooltip.component';
 import { OrbitalElementTable, SentrySpecificTable, SentrySummeryTable } from '../components/table/table.component';
+import {OrbitViewer} from '../components/orbit/orbit.component';
 
 const SentryDetail = () => {
     let {obj_des} = useParams();
     let [neo, setNeo] = useState({});
-    let [iframeURL, setIframeURL] = useState("");
+    let [elms, setElms] = useState();
     let [calc_epoch, setCalc_epoch] = useState(0);
     
  
@@ -39,7 +40,18 @@ const SentryDetail = () => {
                 }
                 return true;
             })
-            setIframeURL(`https://cneos.jpl.nasa.gov/ov/index.html#elem=w:${w},e:${e},epoch:${epoch},tp:${tp},per:${per},om:${om},ad:${ad},q:${q},label:${label},i:${i}`);
+            setElms({
+                w:w,
+                epoch:epoch,
+                label:label,
+                e:e,
+                tp:tp,
+                per:per,
+                om:om,
+                ad:ad,
+                q:q,
+                i:i
+            });
         }catch{
             console.log("catched");
         }finally{
@@ -65,27 +77,28 @@ const SentryDetail = () => {
                             <h3>Orbital Elements For {obj_des}</h3>
                             <small>Orbit Calculated At: {(Date(calc_epoch)).slice(0,15)}</small>
                             <p>Reference: JPL 110 (heliocentric ecliptic J2000)</p>
-                            <small className="text-muted">For accurate long-term ephemerides, please instead use NASA's Horizons system.This orbit viewer was implemented using two-body methods, and hence should not be used for determining accurate long-term trajectories (over several years or decades) or planetary encounter circumstances.</small>
+                            
                             <br/><br/>
                             <OrbitalElementTable sstr={obj_des} saver={setNeo} />
-                            <br/><br/><br/>
+                            <br/>
                         </Col>
                         <Col md={12} lg={7}>
+                            <Container fluid>
                             <p> <span style={{fontSize:"130%"}}>Orbit Visualization</span>&nbsp;&nbsp;
                             <Tooltip tip="This orbit viewer was written and developed at JPL by Kevin Gill with contributions from Paul Chodas, Javier Roa, and Alan Chamberlin. Written in JavaScript, it makes use of WebGL via the open-source three.js package.">
                                     <RiErrorWarningLine size={25}/>
                             </Tooltip>
 
                             </p>
-                            
-                            <Container fluid>
-                                <iframe className={styles.orbitviewer} src={iframeURL} title="orbit Viewer" frameBorder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                                <small className="text-muted">For accurate long-term ephemerides, please instead use NASA's Horizons system.This orbit viewer was implemented using two-body methods, and hence should not be used for determining accurate long-term trajectories (over several years or decades) or planetary encounter circumstances.</small>
+                                <br/><br/>
+                                {elms ? <OrbitViewer elements={elms}/> : <></> }
                             </Container>
                                        
                         </Col>
                     </Row>
                     <Row className={styles.sections}>
-                        <h3>Sentry Details For {obj_des}</h3>
+                        <h3>Virtual Impactors For {obj_des}</h3>
                         <SentrySpecificTable obj_des={obj_des} />
                         <Container style={{marginTop:"10rem"}}>
                             <div className={styles.definations}>
