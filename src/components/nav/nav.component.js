@@ -59,7 +59,7 @@ export default function Navigation({nopad}) {
                                 <NavDropdown.Item as={Link} to={URLS.ORBIT()}><span className={styles.nospacing}>3D Orbit Viewer</span></NavDropdown.Item>
                               
                             </NavDropdown>
-                            <Nav.Link href={URLS.ABOUT()}>&nbsp;02.About</Nav.Link>
+                            <Nav.Link as={Link} to={URLS.ABOUT()}>&nbsp;02.About</Nav.Link>
                             <NavDropdown  className={styles.customdd} title="&nbsp;03.Share" id="collasible-nav-dropdown">
                                 <NavDropdown.Item  href={fbshare}><span className={styles.nospacing}>Facebook</span></NavDropdown.Item>
                                 <NavDropdown.Item  href={tshare}><span className={styles.nospacing}>Twitter</span></NavDropdown.Item>
