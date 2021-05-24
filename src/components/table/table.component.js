@@ -4,7 +4,7 @@ import React, { useEffect, useState, useReducer } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import {CgPlayTrackNext, CgPlayTrackPrev } from 'react-icons/cg';
-
+import {Link} from 'react-router-dom';
 import FBloader from '../loader/fbloader.component';
 import { URLS } from '../settings';
 import Tooltip from '../utils/tooltip.component';
@@ -105,7 +105,7 @@ export const SentrySummeryTable = ({filter, nohead}) => {
             <tr>
                 {/* Data prop must be sentries.data or table data */}
                 <td>
-                    <Tooltip tip={"click to see more about this object designation"}  ><a className={styles.hoverboldunderline} href={URLS.SENTRY({obj_des:data.des})}>{data.des}</a></Tooltip>
+                    <Tooltip tip={"click to see more about this object designation"}  ><Link className={styles.hoverboldunderline} to={URLS.SENTRY({obj_des:data.des})}>{data.des}</Link></Tooltip>
                 </td>
                 <td>
                     <Tooltip tip={"year range"}  >{data.range}</Tooltip>
@@ -823,9 +823,9 @@ export const NhatsTable = ({hoverEnter, hoverOut}) =>{
                 {/* Data prop must be sentries.data or table data */}
                 <td>
                     <Tooltip tip={"click to see more about this object designation"}  >
-                        <a className={styles.hoverboldunderline} 
+                        <Link className={styles.hoverboldunderline} 
                           
-                            href={URLS.ORBIT({sstr:data.des})} 
+                            to={URLS.ORBIT({sstr:data.des})} 
                             onMouseEnter={(e)=>{
                                 if(hoverEnter){
                                     hoverEnter(e);
@@ -839,7 +839,7 @@ export const NhatsTable = ({hoverEnter, hoverOut}) =>{
                                 
                             }}>
                             {data.des}
-                        </a>
+                        </Link>
                         </Tooltip>
                 </td>
                 <td>

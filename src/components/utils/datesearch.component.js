@@ -2,8 +2,9 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import styles from '../../assets/css/util.module.css';
+import {Link} from 'react-router-dom';
 
-export const DateRangeSearch = ({startDate, setStartDate, endDate, setEndDate, onSearch, to, children}) => {
+export const DateRangeSearch = ({startDate, setStartDate, endDate, setEndDate, onSearch, children}) => {
     return (
         <>
             <Row className={[].join(" ")}>
@@ -36,7 +37,7 @@ export const DateRangeSearch = ({startDate, setStartDate, endDate, setEndDate, o
                             </Row>
                             <Row>
                                 <Col className={["text-center",styles.padding1].join(" ")}>
-                                    <a className={styles.button} href={to? to:""} onClick={to?"":onSearch}>Search</a>
+                                    <Link className={styles.button} onClick={onSearch}>Search</Link>
                                     <br/><br></br>
                                     {children}
                                 </Col>

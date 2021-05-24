@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Nav, Navbar, NavDropdown, Row, Col } from 'react-bootstrap';
 import styles from "./nav.module.css";
+import { Link } from "react-router-dom";
 import "./nav.module.css";
 import {URLS} from '../settings';
 import {SiAtom} from 'react-icons/si';
@@ -26,7 +27,7 @@ export default function Navigation({nopad}) {
         <>
             <Navbar ref={navbar} className={styles.customNav} expand="lg" fixed="top" variant="custom">
                 <div className="container">
-                    <Navbar.Brand href="/">
+                    <Navbar.Brand as={Link} to="/">
                         <Row>
                             <Col md="2">
                             {/* <img
@@ -52,16 +53,16 @@ export default function Navigation({nopad}) {
                         <Nav className={[styles.roboto,styles.links,styles.spacingS].join(" ")}>
                             <NavDropdown  className={styles.customdd} title="&nbsp;01.Explore" id="collasible-nav-dropdown">
                               
-                                <NavDropdown.Item href={URLS.APOD()}><span className={styles.nospacing}>Astronomy Picture of the Day</span></NavDropdown.Item>
-                                <NavDropdown.Item href={URLS.SENTRY()}><span className={styles.nospacing}>NASA Impact Risk : Sentry</span></NavDropdown.Item>
-                                <NavDropdown.Item href={URLS.NHATS()}><span className={styles.nospacing}>Human Accessible NEO(s) : NHATS</span></NavDropdown.Item>
-                                <NavDropdown.Item href={URLS.ORBIT()}><span className={styles.nospacing}>3D Orbit Viewer</span></NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to={URLS.APOD()}><span className={styles.nospacing}>Astronomy Picture of the Day</span></NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to={URLS.SENTRY()}><span className={styles.nospacing}>NASA Impact Risk : Sentry</span></NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to={URLS.NHATS()}><span className={styles.nospacing}>Human Accessible NEO(s) : NHATS</span></NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to={URLS.ORBIT()}><span className={styles.nospacing}>3D Orbit Viewer</span></NavDropdown.Item>
                               
                             </NavDropdown>
                             <Nav.Link href={URLS.ABOUT()}>&nbsp;02.About</Nav.Link>
                             <NavDropdown  className={styles.customdd} title="&nbsp;03.Share" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1"><span className={styles.nospacing}><a className={styles.sharelink} href={fbshare} target="_blank" rel="noopener noreferrer">Facebook</a></span></NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2"><span className={styles.nospacing}><a className={styles.sharelink} href={tshare} target="_blank" rel="noopener noreferrer">Twitter</a></span></NavDropdown.Item>
+                                <NavDropdown.Item  href={fbshare}><span className={styles.nospacing}>Facebook</span></NavDropdown.Item>
+                                <NavDropdown.Item  href={tshare}><span className={styles.nospacing}>Twitter</span></NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>

@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { URLS } from './components/settings';
 import Apod from './pages/Apod';
@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <ErrBoundary>
-        <Router>
+        <HashRouter>
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -52,7 +52,7 @@ function App() {
             <NotFound/>
           </Route>
         </Switch>
-      </Router>
+      </HashRouter>
       </ErrBoundary>
     </>
   );

@@ -11,6 +11,7 @@ import Navigation from '../components/nav/nav.component';
 import { API_KEY } from '../components/settings';
 import { DateRangeSearch } from '../components/utils/datesearch.component';
 import {URLS} from '../components/settings';
+import {Link} from 'react-router-dom';
 
 
 
@@ -121,11 +122,7 @@ const Apod = () => {
                                     setStartDate={setStartDate} 
                                     endDate={endDate} 
                                     setEndDate={setEndDate} 
-                                    onSearch={get_apod_within_date}
-                                    to={URLS.APOD({
-                                                    start_date:startDate? startDate.toISOString().slice(0, 10) : null,
-                                                    end_date:endDate ? endDate.toISOString().slice(0, 10) : null
-                                                })}>
+                                    onSearch={get_apod_within_date}>
                                     <small className={[styles.white,styles.ibmmono,"text-muted"].join(" ")}>Find APODs between chosen period/date or you can randomly scroll through APODS that had been posted throughout the years.</small>
                                 </DateRangeSearch>
                             </Container>
