@@ -1,4 +1,4 @@
-export const API_KEY = "Fo5SJqhalRdYKBqDqbNDX5VwkKto2RL8mK9174LI"; //This is a client-side application Couldn't hide api key anyway, so not gonna hide. it
+export const API_KEY = "Fo5SJqhalRdYKBqDqbNDX5VwkKto2RL8mK9174LI"; //This is a client-side application Couldn't hide api key anyway, so not gonna hide it
 export const URLS = {
     APOD:({start_date=null, end_date=null} = {})=>{
         if(start_date && end_date){
@@ -12,11 +12,17 @@ export const URLS = {
         }
         return '/sentry'
     },
-    NEO:({sstr}={}) =>{
+    NHATS:() =>{
+        return `/nhats`
+    },
+    ORBIT:({sstr}={})=>{
         if(sstr){
-            return `/neo/${sstr}`
+            return `/orbit/${sstr}`
         }
-        return `/neo`
+        return `/orbit`
+    },
+    ABOUT: ()=>{
+        return `/about`
     }
 
 }
@@ -25,4 +31,5 @@ export const URLS = {
 // /apod
 // /sentry
 // /sentry/:obj_des
-// /neos/:sstr 
+// /nhats
+// /nhats/:sstr 
