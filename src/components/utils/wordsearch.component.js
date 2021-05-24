@@ -39,3 +39,15 @@ export const Filter = ({title, callback}) => {
     )
 }
 
+export const StringSearch = ({title, onChange, onSearch}) =>{
+    return (
+        <>
+            <Container fluid style={{textAlign:"center"}}>
+                <Filter title={title} callback={onChange}></Filter>
+                <br/><br/>
+                <button className={styles.button}>Search</button>
+            </Container>
+        </>
+    )
+}
+
