@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styles from '../../assets/css/util.module.css';
+import * as styles2 from './apod.module.css';
 import { Image, Jumbotron, Row, Col } from 'react-bootstrap';
 import OnLoadGrid from '../loader/onloadgrid.component';
 
@@ -61,3 +62,4 @@ const APOD = ({id, data, children}) => {
 }
 
 export default APOD;
+
