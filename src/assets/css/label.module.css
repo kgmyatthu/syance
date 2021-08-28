@@ -17,7 +17,7 @@
     transform: translateY(-50%); 
 }
 
-.label:hover .tooltip{
+.label:hover > .tooltip{
     opacity:90%;
     background-color: black;
     display: inline;

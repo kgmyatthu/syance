@@ -51,16 +51,16 @@ export default function Navigation({nopad}) {
                         <Nav className="mr-auto">
                         </Nav>
                         <Nav className={[styles.roboto,styles.links,styles.spacingS].join(" ")}>
-                            <NavDropdown  className={styles.customdd} title="&nbsp;01.Explore" id="collasible-nav-dropdown">
+                            {/* <NavDropdown  className={styles.customdd} title="&nbsp;01.Explore" id="collasible-nav-dropdown">
                               
                                 <NavDropdown.Item as={Link} to={URLS.APOD()}><span className={styles.nospacing}>Astronomy Picture of the Day</span></NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to={URLS.SENTRY()}><span className={styles.nospacing}>NASA Impact Risk : Sentry</span></NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to={URLS.NHATS()}><span className={styles.nospacing}>Human Accessible NEO(s) : NHATS</span></NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to={URLS.ORBIT()}><span className={styles.nospacing}>3D Orbit Viewer</span></NavDropdown.Item>
                               
-                            </NavDropdown>
-                            <Nav.Link as={Link} to={URLS.ABOUT()}>&nbsp;02.About</Nav.Link>
-                            <NavDropdown  className={styles.customdd} title="&nbsp;03.Share" id="collasible-nav-dropdown">
+                            </NavDropdown> */}
+                            <Nav.Link as={Link} to={URLS.ABOUT()}>&nbsp;01.About</Nav.Link>
+                            <NavDropdown  className={styles.customdd} title="&nbsp;02.Share" id="collasible-nav-dropdown">
                                 <NavDropdown.Item  href={fbshare}><span className={styles.nospacing}>Facebook</span></NavDropdown.Item>
                                 <NavDropdown.Item  href={tshare}><span className={styles.nospacing}>Twitter</span></NavDropdown.Item>
                             </NavDropdown>
