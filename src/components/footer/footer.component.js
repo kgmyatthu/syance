@@ -1,4 +1,4 @@
-kgmyatthuimport React from 'react'
+import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './footer.module.css';
 import {FaGithub,FaFacebook,FaTwitter,FaLinkedin} from 'react-icons/fa';
